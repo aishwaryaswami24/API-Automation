@@ -14,11 +14,11 @@ test.beforeEach(async ({page})=>{
     body:JSON.stringify(tags)
   })
 })
-  await page.goto('https://conduit.bondaracademy.com/');
+  /*await page.goto('https://conduit.bondaracademy.com/');
   await page.getByText('Sign in').click()
   await page.getByRole('textbox',{name:'Email'}).fill('testt@test.com')
   await page.getByRole('textbox',{name:'Password'}).fill('Dond')
-  await page.getByRole('button').click()
+  await page.getByRole('button').click()*/
 })
 test('has title', async ({ page }) => {
   await expect(page.locator('.navbar-brand')).toHaveText(/conduit/);
@@ -48,6 +48,7 @@ const articleResponse=await request.post('https://conduit-api.bondaracademy.com/
 
   }
 })
+//console.log(articleResponse.json())
 expect(articleResponse.status()).toEqual(201)
 
 await page.getByText('Global Feed').click()
