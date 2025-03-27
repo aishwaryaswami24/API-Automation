@@ -57,3 +57,16 @@ await page.getByText('Global Feed').click()
 
 await expect(page.locator('app-article-list h1').first()).not.toContainText('This is Article')
 })
+
+test('create article',async({page})=>{
+  await page.getByText(' New Article ').click()
+  await page.getByPlaceholder('Article Title').fill('This is title')
+  await page.getByPlaceholder('What\'s this article about?').fill('playwright is awesome')
+  await page.getByPlaceholder('Write your article (in markdown)').fill('automation is easy')
+  await page.getByRole('button',{name:' Publish Article '}).click()
+  
+  await expect(page.locator('.article-page h1')).toContainText('This is title')
+  await page.getByText('Home').click()
+  await page.getByText('Global Feed').click()
+  await expect(page.locator('app-article-list h1').first()).toContainText('This is title')
+})
