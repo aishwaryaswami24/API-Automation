@@ -36,5 +36,14 @@ console.log(num)
 const sliceArray=num.slice(1,3);
 console.log(sliceArray);
 
+const doubleArray=num.map((num)=> num*3)
+console.log(doubleArray);
+
+const fiteredArray=num.filter((num)=> num>2)
+console.log(fiteredArray);
+
 let emptyArray:string[]=[];
 console.log(emptyArray[0])
+
+const readonlynum:readonly number[]=[1,2,3,4,5];
+//readonlynum[0]=10;// Error: Index signature in type 'readonly number[]' only permits reading.
