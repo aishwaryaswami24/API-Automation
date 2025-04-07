@@ -1,4 +1,4 @@
-import {test as setup} from '@playwright/test'
+/*import {test as setup} from '@playwright/test'
 import user from '../.auth/user.json'
 import fs from 'fs'
 
@@ -29,4 +29,4 @@ setup('authentication',async({page,request})=>{
     fs.writeFileSync(authfile,JSON.stringify(user))
 
     process.env['ACCESS_TOKEN']=accessToken
-})
+})*/
