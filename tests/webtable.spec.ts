@@ -1,6 +1,6 @@
 import test, {Page, expect } from "@playwright/test";
 
-test.only("webtable",async ({page}) => {
+test("webtable",async ({page}) => {
     await page.goto('https://testautomationpractice.blogspot.com/');
     const table= page.locator('//table[@name="BookTable"]');
     const headers=table.locator('th');
