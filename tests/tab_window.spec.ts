@@ -32,3 +32,26 @@ test('Single Window',async({page})=>{
     await expect(new_window).toHaveTitle('Selenium');
     await expect(new_window).toHaveURL('https://www.selenium.dev/');
 });
+
+test('Multiple Tab',async({page})=>{
+    await page.click("//a[text()='Open Seperate Multiple Windows']");
+
+    //Promise.all:Represents the completion of an asynchronous operation.
+    const [multi_tab]=await Promise.all([
+        page.waitForEvent('popup'), // Wait for the new tab to open
+        await page.click("//button[@onclick='multiwindow()']")
+    ])
+
+    await multi_tab.waitForLoadState();// Wait for the new tab to load completely
+    await multi_tab.waitForTimeout(4000);
+
+    const pages=await multi_tab.context().pages(); // Get all pages in the context
+    console.log('Total No of Pages:',pages.length); // Log the number of pages
+
+    await expect(pages[1]).toHaveTitle('Index');
+    await expect(pages[1]).toHaveURL('https://demo.automationtesting.in/Index.html');
+    await pages[1].locator('#btn1').click();
+
+    const boldtext=pages[2].locator("//div[@class='mx-auto text-center p-4']/h1");
+    await expect(boldtext).toHaveText("Selenium automates browsers. That's it!")
+});
